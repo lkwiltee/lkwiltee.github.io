@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>The Rational Series</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../css/style.css">
+  <script>
+    window.MathJax = { tex:{inlineMath:[['\\(','\\)'],['$','$']]} };
+  </script>
+  <script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <div class="brand">Liam Quilty</div>
+      <a href="../index.html">Home</a>
+      <a href="../blog.html">Blog</a>
+      <a href="https://github.com/YOURUSERNAME" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>The Rational Series</h1>
+    <p><em>Date:</em> c. June 2023</p>
+
+    <p>
+        Define the series \(S_p=\sum_{n=0}^\infty\frac{n^p}{2^n}\). What properties does this series have? Is there a closed form formula for \(S_p\)?
+    </p>
+
+    <h2>Setup</h2>
+    <p>
+        My high school friend, Om Sharma, proposed this problem to me in high school some years ago. He too was the one who dubbed the name the "Rational Series", since it appeared that for all values of \(n\in\mathbb{N},\; S_p\in\mathbb{N}\) One may note that \(S_0=2\) since, if \(p=0\) this problem simply reduces to a Geometric Series:
+        \[S_0=\sum_{n=0}^\infty\frac{n^0}{2^n}=\sum_{n=0}^\infty\frac{1}{2^n}=\frac{1}{1-\frac12}=2\]
+        When computing \(S_1\) Om had the following idea:
+        \[S_1=\sum_{n=0}^\infty\frac{n}{2^n}=\underbrace{\left(\frac{1}{2^0}+\frac{1}{2^0}+\cdots\right)}_{0\text{ times}}+\underbrace{\left(\frac{1}{2^1}+\frac{1}{2^1}+\cdots\right)}_{1\text{ times}}+\underbrace{\left(\frac{1}{2^2}+\frac{1}{2^2}+\cdots\right)}_{2\text{ times}}+\cdots\]
+        \[=\left(\frac{1}{2}\right)+\left(\frac{1}{4}+\frac{1}{4}\right)+\left(\frac{1}{8}+\frac{1}{8}+\frac{1}{8}\right)+\left(\frac{1}{16}+\frac{1}{16}+\frac{1}{16}+\frac{1}{16}\right)+\cdots\]
+        If one groups terms smartly:
+        \[=\left(\frac{1}{2}+\frac{1}{4}+\frac{1}{8}+\frac{1}{16}+\cdots\right)+\left(\frac{1}{4}\right)+\left(\frac{1}{8}+\frac{1}{8}\right)+\left(\frac{1}{16}+\frac{1}{16}+\frac{1}{16}\right)+\cdots\]
+        \[=\left(\frac{1}{2}+\frac{1}{4}+\frac{1}{8}+\frac{1}{16}+\cdots\right)+\left(\frac{1}{4}+\frac{1}{8}+\frac{1}{16}+\cdots\right)+\left(\frac{1}{8}+\frac{1}{16}+\cdots\right)+\cdots\]
+        Since \(\frac{1}{2}+\frac{1}{4}+\frac{1}{8}+\frac{1}{16}+\cdots=1\implies \frac{1}{4}+\frac{1}{8}+\frac{1}{16}+\cdots=\frac{1}{2}\implies\cdots\) then one may rewrite:
+        \[S_{1}=1+\frac{1}{2}+\frac{1}{4}+\frac{1}{8}+\frac{1}{16}+\cdots=\sum_{n=0}^{\infty}\frac{1}{2^n}=\sum_{n=0}^{\infty}\frac{n^0}{2^n}=S_{0}=2\]
+    </p>
+    <h2>Problem</h2>
+    <p>
+        Where he was stuck was how to prove \(S_2=6\) which is what computation results suggested. Indeed, his assumption was right and this was my idea. I took his and generalized it:
+        \[S_{p}=\sum_{n=0}^{\infty}\frac{n^p}{2^n}=\cancel{\underbrace{\left(\frac{1}{2^0}+\cdots\right)}_{0^p\text{ times}}}+\underbrace{\left(\frac{1}{2^1}+\cdots\right)}_{1^p\text{ times}}+\underbrace{\left(\frac{1}{2^2}+\cdots\right)}_{2^p\text{ times}}+\ldots\]
+        \[=\underbrace{\left(\frac{1}{2}+\cdots\right)}_{1^p\text{ times}}+\underbrace{\left(\frac{1}{4}+\cdots\right)}_{2^p\text{ times}}+\underbrace{\left(\frac{1}{8}+\cdots\right)}_{3^p\text{ times}}+\underbrace{\left(\frac{1}{16}+\cdots\right)}_{4^p\text{ times}}\]
+        Using the same smart grouping:
+        \[S_{p}=\underbrace{\left(\frac{1}{2}+\frac{1}{4}+\frac{1}{8}+\cdots\right)}_{1^p-0^p\text{ times}}+\underbrace{\left(\frac{1}{4}+\frac{1}{4}+\frac{1}{4}+\cdots\right)}_{2^p-1^p\text{ times}}+\underbrace{\left(\frac{1}{8}+\frac{1}{8}+\frac{1}{8}+\cdots\right)}_{3^p-1^p\text{ times}}+\underbrace{\left(\frac{1}{16}+\frac{1}{16}+\frac{1}{16}+\cdots\right)}_{4^p-1^p\text{ times}}\]
+        Again:
+        \[S_{p}=\underbrace{\left(\frac{1}{2}+\frac{1}{4}+\frac{1}{8}+\cdots\right)}_{1^p-0^p\text{ times}}+\underbrace{\left(\frac{1}{4}+\frac{1}{8}+\frac{1}{16}+\cdots\right)}_{2^p-1^p\text{ times}}+\underbrace{\left(\frac{1}{8}+\frac{1}{8}+\frac{1}{8}+\cdots\right)}_{3^p-2^p\text{ times}}+\underbrace{\left(\frac{1}{16}+\frac{1}{16}+\frac{1}{16}+\cdots\right)}_{4^p-2^p\text{ times}}\]
+        Now, it should be noted that the term with the \(\frac{1}{8}\) elements had \(3^p-1^p\) terms, removing \(2^p-1^p\) terms yields, \(3^p-1^p-(2^p-1^p)=3^p-1^p-2^p+1^p=3^p-2^p\). Repeatedly applying this process to each term yields the result:
+        \[S_{p}=\underbrace{\left(\frac{1}{2}+\frac{1}{4}+\cdots\right)}_{1^p-0^p\text{ times}}+\underbrace{\left(\frac{1}{4}+\frac{1}{8}+\cdots\right)}_{2^p-1^p\text{ times}}+\underbrace{\left(\frac{1}{8}+\frac{1}{16}+\cdots\right)}_{3^p-2^p\text{ times}}+\cdots\]
+        As before, note all the Geometric Series involved and simplify:
+        \[S_{p}=(1^p-0^p)\frac{1}{1}+(2^p-1^p)\frac{1}{2}+(3^p-2^p)\frac{1}{4}+\cdots=\sum_{r=0}^{\infty}\frac{(r+1)^p-r^p}{2^r}\]
+        Note that by the Binomial Theorem \((r+1)^{p}-r^p=\cancel{r^p}+\binom{p}{1}r^{p-1}+\cdots+\binom{p}{p}-\cancel{r^p}=\sum_{i=1}^p\binom{p}{i}r^{p-i}\) and so we may now substitute a using properties of sums simplify:
+        \[S_{p}=\sum_{r=0}^{\infty}\frac{\sum_{i=1}^{p}\binom{p}{i}r^{p-i}}{2^r}=\sum_{i=1}^{p}\sum_{r=0}^{\infty}\binom{p}{i}\frac{r^{p-i}}{2^r}=\sum_{i=1}^{p}\binom{p}{i}\sum_{r=0}^{\infty}\frac{r^{p-i}}{2^r}\]
+        Note that \(S_{p-i}=\sum_{r=0}^\infty\frac{r^{p-i}}{2^r}\) by definition and so:
+        \[\boxed{S_p=\sum_{i=0}^p\binom{p}{i}S_{p-i}=\binom{p}{1}S_{p-1}+\binom{p}{2}S_{p-2}+\cdots+\binom{p}{p-1}S_{1}+\binom{p}{p}S_{0}}\]
+    </p>
+    <h2>\(S_2\)</h2>
+    <p>
+        Indeed Om's suspicion was right, in that:
+        \[S_2=\binom{2}{1}S_1+\binom{2}{2}S_0=2\cdot S_1+S_0=2\cdot2+2=6\]
+    </p>
+    <h2>An Explicit Formula</h2>
+    <p>
+        With a recursive formula now may note that:
+        \[\frac{S_p}{S_{p-1}}=\frac{\binom{p}{1}S_{p-1}+\binom{p}{2}S_{p-2}+\cdots+\binom{p}{p-1}S_{1}+\binom{p}{p}S_{0}}{S_{p-1}}\]
+        \[=\binom{p}{1}\frac{S_{p-1}}{S_{p-1}}\binom{p}{2}\frac{S_{p-2}}{S_{p-1}}+\cdots+\binom{p}{p-1}\frac{S_1}{S_{p-1}}+\binom{p}{p}\frac{S_0}{S_{p-1}}\sim\binom{p}{1}\frac{\cancel{S_{p-1}}}{\cancel{S_{p-1}}}=\binom{p}{1}=p\]
+        Hence \(\frac{S_p}{S_{p-1}}\sim Cp\), though we were not able to rigorously prove \(C=\frac{1}{\ln2}\), we found it through computation and hence:
+        \[\boxed{\frac{S_p}{S_{p-1}}\sim\frac{p}{\ln2}}\quad\text{and actually}\quad\frac{S_p}{S_{p-1}}\le\frac{p}{\ln2}\]
+        This immediately gives:
+        \[\frac{S_p}{S_{p-1}}\sim\frac{p}{\ln 2}\implies S_p\sim S_0\prod_{i=1}^{p}\frac{i}{\ln2}=S_0\frac{p!}{\ln^{p+1}2}\sim\frac{p!}{\ln^{p+1}2}\]
+        It is known that,
+        \[\frac{S_p}{S_{p-1}}\leq\frac{p}{\ln2}\implies S_p\leq S_{p-1}\frac{p}{\ln2}\]
+        \[S_p\leq S_{p-2}\frac{p}{\ln2}\frac{p-1}{\ln2}\implies S_p\leq S_0\frac{p!}{\ln^{p+1}2}\implies\sum_{n=1}^{\infty}\frac{n^p}{2^n}\leq\frac{p!}{\ln^{p+1}2}\]
+        and that as $p\to\infty$ that \(\frac{p!}{\ln^{p+1}2}\to\sum_{n=0}^{\infty}\frac{n^p}{2^n}\). So define:
+        \[\epsilon_p:=\frac{p!}{\ln^{p+1}2}-\sum_{n=1}^{\infty}\frac{n^p}{2^n}\]
+        Because the relationship gets better as \(p\to\infty\), it follows that \(|\epsilon_{p+1}|<|\epsilon_p|\). Therefore, \(\forall p\in\mathbb{N}, \epsilon_p\) attains its maximum at \(p=0\). However, notably \(\epsilon_0=\frac{1}{\ln2}-1<\frac12\implies\forall p\in\mathbb{N},\;|\epsilon_p|<\frac12\). Rounding the error will result in the error being zero, hence all values returned by the approximation \(\frac{p!}{\ln^{p+1}2}\) will exactly match \(S_p\). This is because the the floor function will take negative errors and round down, resulting in a value 1-less than the actual value of the series; the ceiling function will take positive errors and round up, resulting in a value 1-more than the actual value of the series. Therefore, we have \(\lfloor\epsilon_p\rceil=0,\forall p\geq0\), it follows:
+        \[\lfloor\epsilon_p\rceil=\left\lfloor\frac{p!}{\ln^{p+1}2}-\sum_{n=1}^{\infty}\frac{n^p}{2^n}\right\rceil=\left\lfloor\frac{p!}{\ln^{p+1}2}\right\rceil-\sum_{n=1}^{\infty}\frac{n^p}{2^n}=0\]
+        Which immediately gives:
+        \[\boxed{\left\lfloor\frac{p!}{\ln^{p+1}2}\right\rceil=\sum_{n=1}^{\infty}\frac{n^p}{2^n}}\]
+        As desired.  □
+    </p>
+  </main>
+
+  <footer>© <span id="y"></span> Liam Quilty.</footer>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
