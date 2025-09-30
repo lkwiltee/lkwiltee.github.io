@@ -1,44 +1,287 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Exploring Families for 4/p - ESC notes</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../css/style.css">
-  <script>
-    window.MathJax = { tex:{inlineMath:[['\\(','\\)'],['$','$']]} };
-  </script>
-  <script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <meta charset="UTF-8">
+    <title>Exploring Families for 4/p - ESC notes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/style.css">
+    <script>
+    window.MathJax = {
+        tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+        svg: { fontCache: 'global' }
+    };
+    </script>
+    <script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
-  <header>
+    <header>
     <nav class="nav">
-      <div class="brand">Liam Quilty</div>
-      <a href="../index.html">Home</a>
-      <a href="../blog.html">Blog</a>
-      <a href="https://github.com/lkwiltee" target="_blank" rel="noopener">GitHub</a>
+        <div class="brand">Liam Quilty</div>
+        <a href="../index.html">Home</a>
+        <a href="../blog.html">Blog</a>
+        <a href="https://github.com/lkwiltee" target="_blank" rel="noopener">GitHub</a>
     </nav>
-  </header>
+    </header>
 
-  <main>
-    <h1>The Erdos-Straus Conjecture</h1>
-    <p><em>Date:</em> 09/21/2025</p>
+    <main>
+        <h1>The Erdos-Straus Conjecture</h1>
+        <p><em>Date:</em> 09/29/2025</p>
 
-    <p>
-      The Erdos-Straus Conjecture (ESC) states that \(\forall n\in\mathbb{N},\;\exists x,y,z\in\mathbb{N}:\frac4n=\frac1x+\frac1y+\frac1z\)
-    </p>
+        <p>
+            The Erdos-Straus Conjecture (ESC) states that \(\forall n\in\mathbb{N},\;\exists x,y,z\in\mathbb{N}:\frac4n=\frac1x+\frac1y+\frac1z\)
+        </p>
 
-    <h2>Setup</h2>
-    <p>
-      foo...
-    </p>
+        <h2>Setup</h2>
+        <p>
+            Since the following fractional identity exists:
+            \[\frac{1}{k}=\frac{1}{k+1}+\frac{1}{k(k+1)}\]
+            As long as one has a 1 or 2-term Egyptian Fraction Decompositions, one immediately has a 3-term as well. One can verify that for even numbers:
+            \[\frac{4}{2n}=\frac{2}{n}=\frac{1}{n}+\frac{1}{n}\]
+            If \(n\equiv3\pmod4\) then one has:
+            \[\frac{4}{4k+3}=\frac{1}{k+1}+\frac{1}{(k+1)(4k+3)}\]
+            Thus, all that remains is \(n\equiv1\pmod4\).
+            <div class="thm">
+                <b>Lemma 1.</b> Let \(a, b \in \mathbb{N}\). Then \(\displaystyle \frac{a}{b}\) can be written as a sum of two unit fractions \[\frac{a}{b} = \frac{1}{y} + \frac{1}{z}\quad \text{for some } y,z \in \mathbb{N}_{>0}\] if and only if the Diophantine equation \(a y z = b(y + z)\) has a solution with \(y, z > 0\). Moreover, all such solutions correspond to the factor pairs of \[(a y - b)(a z - b) = b^2\]
+            </div>
+            <em>Proof.</em> Begin with \(\frac{a}{b}=\frac{1}{y}+\frac{1}{z}=\frac{y+z}{yz}\) which is equivalent of \(ayz=b(y+z)\implies ayz-by-bz=0\) factorizing by adding \(b^2\) to both sides gives \((ay-b)(az-b)=b^2\).
+            So, any integer solution \(y, z > 0\) must correspond to a factorization of \(b^2\) as:
+            \[b^2=uv\quad\text{where}\quad u=ay-b,\; v=az-b\]
+            Solving these for \(y\) and \(z\) gives:
+            \[y=\frac{u+b}{a}, \quad z=\frac{v+b}{a}\]
+            So for each pair of positive integers \(u,v>0\) with \(u v=b^2\) and \(u\equiv-(b\mod a)\), the pair \((y,z)\) is a positive integer solution. □
+        </p>
+        <p>
+            Let \(n=4k+1\) be composite with \(p\) as its smallest prime factor. Write:
+            \[\frac{4}{4k+1}=\frac{1}{k+1+m}+\frac{4m+3}{D}\]
+            Then: \(p\le\sqrt{n}<2k\) hence in the interval \(0\le m\le2k-1\) the congruence \(4m+3\equiv (0\mod p)\) has at least one solution by the pigeonhole principle. Since \(p\mid(4m+3)\) this gives \(\gcd(4m+3,D)\ge p>1\) with \(D=(4k+1)(k+1+m)\). Because of this fact lemma 1 guarantees \(\exists x,y\in\mathbb{N}:\frac{4m+3}{D}=\frac{1}{x}+\frac{1}{y}\).
+        </p>
+        <p>
+            Thus all that remains are primes such that \(p\equiv\{1,121,169,289,361,529\}\pmod{840}\), all other classes of numbers have been resolved constructively. These are the so-called "exceptional cases". Here I shall present a derivation of a singular modular condition, that if true, would gaurantee the existence of \(x,y,z\) for every single prime \(p\) of the exceptional cases.
+        </p>
 
-    <h2>Computations</h2>
-    <pre><code># foo foo foo...
-    </code></pre>
-  </main>
+        <h2>An Ansatz</h2>
+        <p>
+            Notice that all primes of the form follow a similar pattern:
+            \[\frac{4}{p}=\frac{1}{\alpha p}+\frac{1}{\beta}+\frac{1}{\gamma p}\]
+            Where \(\alpha,\beta\) are natural numbers and \(\gamma\) is the product of some factors of \(\alpha\) and \(\beta\). Consider \(p=1009\equiv169\pmod{840}\) and observe:
+            \[\frac{4}{1009}=\frac{1}{6\cdot1009}+\frac{1}{264}+\frac{1}{88\cdot1009}\]
+            Note that \(88\) can be formed by either taking 2 from 6 and 44 from 264 or 1 from 6 and 88 from 264. This is what it means for \(\gamma\) to be the product of some pair of factors of \(\alpha=6\) and \(\beta=264\).
+        </p>
+        <p>
+            Begin with:
+            \[\frac{4}{p}=\frac{1}{\alpha p}+\frac{1}{\beta}+\frac{1}{\gamma p}\implies\beta\gamma+\alpha\gamma p+\alpha\beta=4\alpha\beta\gamma\]
+            <div class="thm">
+                <b>Lemma 2.</b> Define two variables: \(h:=(4\alpha-1)\beta-\alpha p\) and \(h':=(4\alpha-1)\gamma-\alpha\) then \(\frac{4}{p}=\frac{1}{\alpha p}+\frac{1}{\beta}+\frac{1}{\gamma p}\) if and only if \(\gamma h=\alpha\beta\) and \(\beta h'=\alpha\gamma p\).
+            </div>
+            <em>Proof.</em> Begin with the equation:
+            \[\beta\gamma+\alpha\gamma p+\alpha\beta=4\alpha\beta\gamma\iff\gamma((4\alpha-1)\beta-\alpha p)=\alpha\beta\iff\gamma h=\alpha\beta\]
+            Similarly,
+            \[\beta((4\alpha-1)\gamma-\alpha)=\alpha\gamma p\iff\beta h'=\alpha\gamma p\]
+            As desired. □
+        </p>
+        <p>
+            Under the same hypothesis \(hh'=\alpha^2p\). From Lemma 2 one may verify via the computation:
+            \[(\gamma h)(\beta h')=(\alpha\beta)(\alpha\gamma p)\implies hh'=\alpha^2 p\]
+            This also means that \(h'\mid\alpha^2p\). If \(p\mid h'\) then \(h'=pd\) with some \(d\mid\alpha^2\). If \(\forall p,\; p\mid h'\) then this is equivalent to:
+            \[h'=pd\equiv-\alpha\pmod{4\alpha-1}\]
+            By definition.
+            Therefore one has the master identity:
+            \[\boxed{pd\equiv-\alpha\pmod{4\alpha-1}}\]
+            <div class="thm">
+                <b>Conjecture 3.</b> For all primes \(p\equiv\{1,121,169,289,361,529\}\pmod{840}\) there exists an \(\alpha\) with a divisor \(d\mid\alpha^2\) such that the following congruence holds:
+                \[pd\equiv-\alpha\pmod{4\alpha-1}\]
+            </div>
+        </p>
+        <hr>
+        <p>
+            <div class="thm">
+                <b>Theorem 4.</b> Every divisor \(d\mid\alpha^2\) can be written uniquely in the canonical form \(d=rs^2\) with \(r,s\mid\alpha\) and \(r\) squarefree.
+            </div>
+            <em>Proof.</em> Write the prime factorization of \(\alpha\):
+            \[\alpha=\prod_i p_i^{e_i}\implies\alpha^2=\prod_i p_i^{2e_i}\quad(e_i\in\mathbb{Z}_{\ge0})\]
+            A divisor \(d\mid\alpha^2\) must be written as:
+            \[d=\prod_ip_i^{f_i}\quad(0\le f_i\le2e_i)\]
+            For each \(i\) decompose the exponent into parity and half:
+            \[u_i:=f_i\mod2\in\{0,1\},\quad v_i:=\frac{f_i-u_i}{2}\in\{0,1,\ldots,e_i\}\]
+            Define:
+            \[r:=\prod_ip_i^{u_i},\quad s:=\prod_ip_i^{v_i}\]
+            Then \(r\) is squarefree since \(u_i\in\{0,1\}\) and \(r,s\mid\alpha\) because \(u_i\le1\le e_i\) when \(u_i=1\) and \(v_i\le e_i\) by construction. Moreover:
+            \[rs^2=\prod_i p_i^{u_i}\cdot\prod_i p_i^{2v_i}=\prod_ip_i^{u_i+2v_i}=\prod_ip_i^{f_i}=d\]
+            So \(d=rs^2\). Next assume that \(d=rs^2=r's'^2\) with \(r,s\mid\alpha,\; r',s'\mid\alpha\). Comparing the prime exponents gives:
+            \[u_i+2v_i=u_i'+2v_i'\]
+            Considering the equation \(\mod2\) gives \(u_i\equiv u_i'\pmod2\), hence \(u_i=u_i'\) because \(u_i,u_i'\in\{0,1\}\). Therefore one has \(2v_i=2v_i'\implies v_i=v_i'\). Or in other words \(s=s'\) and \(r=r'\).
+            Thus each \(d\mid\alpha^2\) takes the unique canonical form:
+            \[d=rs^2\]
+            As desired. □
+        </p>
 
-  <footer>© <span id="y"></span> Liam Quilty.</footer>
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+        <h2>Computations</h2>
+        <div class="codeblock">
+            <button class="copy-btn">Copy</button>
+            <pre><code>from math import isqrt
+from functools import lru_cache
+
+def is_prime(n: int) -> bool:
+    if n < 2: return False
+    if n % 2 == 0: return n == 2
+    r = isqrt(n)
+    f = 3
+    while f <= r:
+        if n % f == 0:
+            return False
+        f += 2
+    return True
+
+def residues_ok(p: int) -> bool:
+    r = p % 840
+    return r in (1, 121, 169, 289, 361, 529)
+
+def factor_small(n: int):
+    """Trial divides up to sqrt(n). Returns list of (prime, exponent)."""
+    fac = []
+    c = 0
+    while n % 2 == 0:
+        n //= 2; c += 1
+    if c: fac.append((2, c))
+    f = 3
+    r = isqrt(n)
+    while f <= r and n > 1:
+        if n % f == 0:
+            c = 0
+            while n % f == 0:
+                n //= f; c += 1
+            fac.append((f, c))
+            r = isqrt(n)
+        f += 2
+    if n > 1:
+        fac.append((n, 1))
+    return fac
+
+@lru_cache(maxsize=None)
+def divisors_of_square(alpha: int):
+    """All divisors of alpha^2 (as ints)."""
+    fac = factor_small(alpha)
+    divs = [1]
+    for p, e in fac:
+        new = []
+        for d in divs:
+            pe = 1
+            for _ in range(2*e + 1):
+                new.append(d * pe)
+                pe *= p
+        divs = new
+    return divs
+
+def find_q(n: int):
+        """Return an odd divisor q ≡ 3 (mod 4) of n, or None."""
+        tmp = n
+        while tmp % 2 == 0:
+            tmp //= 2
+        f = 3
+        while f * f <= tmp:
+            if tmp % f == 0:
+                if f % 4 == 3:
+                    return f
+                while tmp % f == 0:
+                    tmp //= f
+            f += 2
+        if tmp > 1 and tmp % 4 == 3:
+            return tmp
+        return None
+
+def fast_families(p: int):
+    """
+    If p+1, 4p+1, or p+4 has an odd divisor q ≡ 3 (mod 4),
+    then we get an immediate decomposition.
+    Returns (alpha, beta, gamma) if found, else None.
+    """
+    # Case 1: p+1
+    q = find_q(p + 1)
+    if q is not None:
+        alpha = (q + 1) // 4
+        gamma = (alpha * (p + 1)) // q
+        beta = gamma
+        return (alpha, beta, gamma)
+
+    # Case 2: 4p+1
+    q = find_q(4 * p + 1)
+    if q is not None:
+        alpha = (q + 1) // 4
+        gamma = (alpha * (4 * p + 1)) // q
+        beta = gamma
+        return (alpha, beta, gamma)
+
+    # Case 3: p+4
+    q = find_q(p + 4)
+    if q is not None:
+        alpha = (q + 1) // 4
+        gamma = (alpha * (p + 4)) // q
+        beta = gamma
+        return (alpha, beta, gamma)
+
+    return None
+
+def first_family_E_decomp_prime(p: int, alpha_max: int = 10_000):
+    """
+    Return the first (alpha, beta, gamma) satisfying:
+        4/p = 1/(alpha*p) + 1/beta + 1/(gamma*p)
+    Strategy:
+    (1) Try fast constructions.
+    (2) For alpha up to alpha_max, iterate d | alpha^2 and solve (4alpha - 1)*gamma = alpha + p*d
+    Returns tuple or None.
+    """
+    # (1) fast construactions
+    t = fast_families(p)
+    if t is not None:
+        return t
+
+    # (2) structured search
+    for alpha in range(1, alpha_max + 1):
+        t = 4*alpha - 1
+        divs = divisors_of_square(alpha)
+        for d in divs:
+            num = alpha + p * d
+            if num % t == 0:
+                gamma = num // t
+                # beta = gamma * (alpha^2 / d) / alpha = gamma * alpha / d
+                if (gamma * alpha) % d == 0:
+                    beta = (gamma * alpha) // d
+                    return (alpha, beta, gamma)
+
+    return None
+
+def scan_up_to(limit: int = 100_000_000):
+    failures = []
+    for n in range(1, limit + 1):
+        if n % 100_000 == 0:
+            print(f"{n:,} passed")
+        if not residues_ok(n): continue
+        if not is_prime(n): continue
+        if first_family_E_decomp_prime(n) is None:
+            print("Failure:", n)
+            failures.append(n)
+            if len(failures) > 6:
+                print("Halting: too many failures")
+                break
+    print("Final failures:", failures)
+
+if __name__ == "__main__":
+    scan_up_to()</code></pre>
+        </div>
+    </main>
+
+    <footer>© <span id="y"></span> Liam Quilty.</footer>
+    <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+    <script>
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const code = btn.nextElementSibling.innerText; // the <code> text
+            navigator.clipboard.writeText(code).then(() => {
+            btn.textContent = "Copied!";
+            setTimeout(() => btn.textContent = "Copy", 1500);
+            });
+        });
+        });
+    </script>
 </body>
 </html>
