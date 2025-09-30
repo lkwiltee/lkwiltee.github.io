@@ -221,7 +221,7 @@ def fast_families(p: int):
 
     return None
 
-def first_family_E_decomp_prime(p: int, alpha_max: int = 10_000):
+def broad_search_decomp(p: int, alpha_max: int = 10_000):
     """
     Return the first (alpha, beta, gamma) satisfying:
         4/p = 1/(alpha*p) + 1/beta + 1/(gamma*p)
@@ -257,7 +257,7 @@ def scan_up_to(limit: int = 100_000_000):
             print(f"{n:,} passed")
         if not residues_ok(n): continue
         if not is_prime(n): continue
-        if first_family_E_decomp_prime(n) is None:
+        if broad_search_decomp(n) is None:
             print("Failure:", n)
             failures.append(n)
             if len(failures) > 6:
