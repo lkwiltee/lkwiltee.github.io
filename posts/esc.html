@@ -114,12 +114,67 @@
             \[d=rs^2\]
             As desired. □
         </p>
-
+        <h2>On the Conjecture</h2>
+        <p><em>Date:</em> 10/08/2025</p>
         <p>
-            Throughout the rest of this article rewrite \(\alpha\to a\).
+            Throughout the rest of this article rewrite \(\alpha\to a\). Define \(q:=4a-1\implies a=\frac{q+1}{4}\). Thus \(q\equiv-1\pmod{4}\). Over the modulus \(4a-1\) we have that \(4a\equiv1\). So then the master modulo condition simplifies:
+            \[pd+a\equiv0\pmod{4a-1}\iff4pd+1\equiv0\pmod{4a-1}\]
+            If one chooses \(d=1\) then the master condition simplifies to \(4p+1\equiv0\pmod{q}\). Therefore as long as \(4p+1\) as a divisor \(q\mid 4p+1:q\equiv3\pmod{4}\). Then choose \(d=1\) and \(a=\frac{q+1}{4}\). Since \(d\mid a^2\) trivially, this is a valid solution which gives a valid decomposition.
+        </p>
+        <p>
+            A similar exercise may be repeated by choosing \(d=\{a,a^2\}\) to have the conditions \(p+1,p+4\) having some divisor \(\equiv3\pmod{4}\). For example, consider the prime \(1009\equiv 169\pmod{840}\) -- one of the "exceptional cases".
+            \[4\cdot1009+1=4037\]
+            Since \(11\mid4037\) and \(11\equiv3\pmod{4}\), this satisfies the master congruence. Notably by choosing \(d=1\) and \(a=\frac{11+1}{4}=3\). Then one may indeed verify that:
+            \[1009\cdot1+3\equiv0\pmod{4\cdot3-1}\]
+            Thus, \(\gamma=\frac{pd+a}{4a-1}=92\) and then, \(\beta=\frac{a\gamma p}{4a\gamma-a-\gamma}=276\)
+            Then one may indeed verify that:
+            \[\frac{4}{1009}=\frac{1}{3\cdot1009}+\frac{1}{276}+\frac{1}{92\cdot1009}\]
+            Which, of course, is a valid 3-term Egyptian Fraction Decomposition.
+        </p>
+        <p>
+            Note that the prime \(p=3361\equiv1\pmod{840}\) is not so simple. \(3361+1=3362\) lacks any divisors \(\equiv3\pmod{4}\). Also, \(3361+4=3365=5\cdot673\) certainly does not and also \(4\cdot3361+1=13445=5\cdot2689\). But is this a foil to conjecture 3? No.
+        </p>
+        <p>
+            Instead write \(a=5b\). Then the master congruence becomes:
+            \[4pd+1\equiv0\pmod{4a-1}\implies 4pd+1\equiv0\pmod{20b-1}\]
+            Now the divisor \(q\equiv-1\equiv19\pmod{20}\). The better effect of this however is now the possible choices of \(d\) has expanded. All possible choices are \(\{1,5,25\}\times\{1,b,b^2\}\). Note that the choices of \(1,5b,25b^2\) are not particularly exciting as these are just the \(d=1,a,a^2\) cases from before. However, under this framework one may choose \(d=5\) which certainly divides \(25b^2\). Then the master condition becomes:
+            \[4pd+1\equiv0\pmod{q}\implies 20p+1\equiv0\pmod{q}\]
+            Note that \(20\cdot3361+1=67221\) and \(99\mid67221\). Since also \(99\equiv19\pmod{20}\) we have satisfied the master condition in conjecture 3. So pick \(a=\frac{99+1}{4}=25\) and \(d=5\). Then \(\gamma=\frac{pd+a}{4a-1}=170\) and then, \(\beta=\frac{a\gamma p}{4a\gamma-a-\gamma}=850\). Indeed one may verify that:
+            \[\frac{4}{3361}=\frac{1}{25\cdot3361}+\frac{1}{850}+\frac{1}{170\cdot3361}\]
+        </p>
+        <p>
+            <div class="thm">
+                <b>Theorem 5.</b> For some \(t\in\mathbb{P}\) write \(a=tb\). Then conjecture 3 is satisfies if:
+                \[\exists q\mid N_t(u,v):=4pt^u+(4t)^v:q\equiv-1\pmod{4t}\]
+                For some \((u,v)\in\{0,1,2\}^2\)
+            </div>
+            <em>Proof.</em>
+            Generally, if one chooses \(a=tb,\;t\in\mathbb{P}\). All allowed \(d\) are of the form \(d=t^ub^v\) where \(u,v\in\{0,1,2\}\) because \(d\mid a^2=t^2b^2\). From \(4pd+1\equiv0\pmod{4tb-1}\) we have that \(4tb\equiv1\implies b\equiv(4t)^{-1}\). Hence:
+            \[4pt^ub^v+1\equiv 4pt^u(4t)^{-v}+1\equiv0\pmod{4tb-1}\implies 4pt^u+(4k)^v\equiv0\pmod{4tb-1}\]
+            Thus any factor \(q\equiv-1\pmod{4t}\) of the integer \(N_t(u,v)=4pt^u+(4t)^v\) can be taken as some \(q=4kb-1\) for some \(b\), giving \(a=\frac{q+1}{4}=tb\) and the chosen \(d=t^ub^v\) (which indeed divides \(d^2\) by design). □
+        </p>
+        <h3>\(t=1\)</h3>
+        <p>
+            (Of course 1 is not prime, but it is worthy of analysis) Here \(N_1(u,v)=4p\cdot 1^u+4^v=4p+4^v\). Up to removing powers of \(2\) this gives:
+            <ul>
+                <li>\(v=0:4p+1\)</li>
+                <li>\(v=1:4(p+1)\rightsquigarrow p+1\)</li>
+                <li>\(v=2:4(p+4)\rightsquigarrow p+4\)</li>
+            </ul>
+            This of course matches the \(d=\{1,a,a^2\}\) idea from before (since \(b=1b=a\)).
+        </p>
+        <h3>\(t=2\)</h3>
+        <p>
+            Here \(N_2(u,v)=4p\cdot 2^u+8^v=2^{u+2}p+8^v\). Again, up to removing powers of \(2\) this gives:
+            <ul>
+                <li>\(v=0:u=1,2\implies 8p+1,16p+1\)</li>
+                <li>\(v=1:u=0,2\implies 4p+8=4(p+2)\rightsquigarrow p+2, 16p+8=8(2p+1)\rightsquigarrow 2p+1\)</li>
+                <li>\(v=2:u=0,1\implies 4p+64=4(p+16)\rightsquigarrow p+16, 8p+64=8(p+8)\rightsquigarrow p+8\)</li>
+            </ul>
+            Then we have 6 new criteria if any \(\{8p+1,16p+1,p+2,2p+1,p+16,p+8\}\) have a divisor \(q\equiv-1\pmod{20}\) then it satisfies the master criterion and admits a 3-term Egyptian Fraction Decomposition.
         </p>
 
-        <h2>Computations</h2>
+        <!-- <h2>Computations</h2>
         <div class="codeblock">
             <button class="copy-btn">Copy</button>
             <pre><code>from math import isqrt
@@ -270,7 +325,7 @@ def scan_up_to(limit: int = 100_000_000):
     print("Final failures:", failures)
 
 if __name__ == "__main__":
-    scan_up_to()</code></pre>
+    scan_up_to()</code></pre> -->
         </div>
     </main>
 
